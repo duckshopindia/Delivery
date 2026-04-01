@@ -19,7 +19,6 @@
             --nav-blue: #2979ff;
             --distance-orange: #ff9800;
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
             font-family: 'Poppins', sans-serif; 
@@ -27,7 +26,6 @@
             color: var(--text-white); 
         }
 
-        /* LOGIN SCREEN */
         .login-container {
             display: flex;
             justify-content: center;
@@ -35,7 +33,7 @@
             height: 100vh;
             background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
         }
-        
+
         .login-box {
             width: 90%;
             max-width: 400px;
@@ -46,23 +44,21 @@
             text-align: center;
             border: 1px solid #333;
         }
-        
+
         .login-icon {
             font-size: 3.5rem;
             color: var(--primary-green);
             margin-bottom: 1rem;
         }
-        
+
         .login-box h2 {
             color: var(--text-white);
             margin-bottom: 2rem;
             font-weight: 600;
         }
-        
-        .code-input-container {
-            margin-bottom: 1.5rem;
-        }
-        
+
+        .code-input-container { margin-bottom: 1.5rem; }
+
         .code-input {
             width: 100%;
             padding: 1rem;
@@ -77,373 +73,193 @@
             outline: none;
             transition: all 0.3s;
         }
-        
+
         .code-input:focus {
             border-color: var(--primary-green);
             box-shadow: 0 0 15px rgba(0, 230, 118, 0.2);
         }
-        
+
         .code-input::placeholder {
             color: #666;
             letter-spacing: normal;
             font-size: 1rem;
         }
-        
-        /* MAIN APP */
+
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .loading-overlay.d-none { display: none !important; }
+        .loading-spinner {
+            width: 50px; height: 50px;
+            border: 4px solid #333;
+            border-top: 4px solid var(--primary-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { color: var(--text-gray); font-size: 0.9rem; }
+
+        .location-banner {
+            background: rgba(255, 152, 0, 0.15);
+            border: 1px solid var(--distance-orange);
+            color: var(--distance-orange);
+            padding: 12px 16px;
+            margin: 10px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .location-banner.d-none { display: none !important; }
+        .location-banner i { font-size: 1.2rem; }
+        .location-banner button {
+            background: var(--distance-orange);
+            color: black;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 0.8rem;
+        }
+
         .d-none { display: none !important; }
 
-        /* HEADER */
         .header {
-            position: sticky; 
-            top: 0; 
-            z-index: 100;
+            position: sticky; top: 0; z-index: 100;
             background-color: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
             padding: 1rem;
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             border-bottom: 1px solid #333;
         }
-        
-        .logo { 
-            font-size: 1.4rem; 
-            font-weight: 700; 
-            color: var(--text-white); 
-        }
-        
+
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--text-white); }
         .logo span { color: var(--primary-green); }
-        
-        .header-actions { 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-        }
-        
+
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+
         .status-toggle { 
-            font-size: 0.8rem; 
-            background: #333; 
-            padding: 5px 10px; 
-            border-radius: 20px; 
-            display: flex; 
-            align-items: center; 
-            gap: 6px;
-            cursor: pointer;
+            font-size: 0.8rem; background: #333; padding: 5px 10px; 
+            border-radius: 20px; display: flex; align-items: center; 
+            gap: 6px; cursor: pointer;
         }
-        
+
         .status-dot { 
-            width: 8px; 
-            height: 8px; 
-            background: var(--primary-green); 
-            border-radius: 50%; 
-            box-shadow: 0 0 10px var(--primary-green); 
+            width: 8px; height: 8px; background: var(--primary-green); 
+            border-radius: 50%; box-shadow: 0 0 10px var(--primary-green); 
         }
-        
+
         .logout-btn {
-            background: #222;
-            border: 1px solid #444;
-            color: var(--reject-red);
-            width: 35px; 
-            height: 35px;
-            border-radius: 50%;
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            cursor: pointer;
-            transition: 0.2s;
+            background: #222; border: 1px solid #444; color: var(--reject-red);
+            width: 35px; height: 35px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: 0.2s;
         }
-        
-        .logout-btn:active { 
-            transform: scale(0.9); 
-            background: #333; 
-        }
+        .logout-btn:active { transform: scale(0.9); background: #333; }
 
-        /* TABS */
         .tabs { 
-            display: flex; 
-            justify-content: space-around; 
-            background: #111; 
-            padding: 10px; 
-            margin-bottom: 15px; 
-            border-bottom: 1px solid #333; 
+            display: flex; justify-content: space-around; background: #111; 
+            padding: 10px; margin-bottom: 15px; border-bottom: 1px solid #333; 
         }
-        
+
         .tab-btn { 
-            background: transparent; 
-            border: none; 
-            color: var(--text-gray); 
-            font-size: 1rem; 
-            font-weight: 600; 
-            padding: 5px 10px; 
-            cursor: pointer; 
-            border-bottom: 2px solid transparent; 
+            background: transparent; border: none; color: var(--text-gray); 
+            font-size: 1rem; font-weight: 600; padding: 5px 10px; 
+            cursor: pointer; border-bottom: 2px solid transparent; 
         }
-        
-        .tab-btn.active { 
-            color: var(--primary-green); 
-            border-bottom-color: var(--primary-green); 
-        }
+        .tab-btn.active { color: var(--primary-green); border-bottom-color: var(--primary-green); }
 
-        /* CONTAINER */
-        .container { 
-            padding: 1rem; 
-            max-width: 600px; 
-            margin: 0 auto;
-            padding-bottom: 80px;
-        }
+        .container { padding: 1rem; max-width: 600px; margin: 0 auto; padding-bottom: 80px; }
 
-        /* ORDER CARD */
         .order-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 1.2rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            border: 1px solid #333;
-            animation: slideUp 0.3s ease-out;
-            position: relative;
+            background-color: var(--card-bg); border-radius: 12px; padding: 1.2rem;
+            margin-bottom: 1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border: 1px solid #333; animation: slideUp 0.3s ease-out; position: relative;
         }
 
-        .card-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: flex-start; 
-            margin-bottom: 10px; 
-        }
-        
-        .user-info h3 { 
-            font-size: 1.1rem; 
-            margin-bottom: 2px; 
-        }
-        
-        .user-info p { 
-            font-size: 0.85rem; 
-            color: var(--text-gray); 
-        }
-        
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .user-info h3 { font-size: 1.1rem; margin-bottom: 2px; }
+        .user-info p { font-size: 0.85rem; color: var(--text-gray); }
+
         .price-badge {
-            background: rgba(0, 230, 118, 0.15);
-            color: var(--primary-green);
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 1.1rem;
+            background: rgba(0, 230, 118, 0.15); color: var(--primary-green);
+            padding: 5px 10px; border-radius: 8px; font-weight: 700; font-size: 1.1rem;
         }
 
-        /* DISTANCE BADGE */
         .distance-badge {
-            background: rgba(255, 152, 0, 0.15);
-            color: var(--distance-orange);
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-top: 5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
+            background: rgba(255, 152, 0, 0.15); color: var(--distance-orange);
+            padding: 5px 10px; border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+            margin-top: 5px; display: inline-flex; align-items: center; gap: 5px;
         }
 
-        /* ITEMS SECTION */
-        .items-section {
-            margin: 15px 0;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-            padding: 10px 0;
-        }
+        .items-section { margin: 15px 0; border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 10px 0; }
 
         .item-card {
-            display: flex;
-            align-items: center;
-            padding: 8px;
-            margin-bottom: 8px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 8px;
+            display: flex; align-items: center; padding: 8px; margin-bottom: 8px;
+            background: rgba(255,255,255,0.05); border-radius: 8px;
         }
+        .item-image { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; margin-right: 10px; }
+        .item-details { flex: 1; }
+        .item-name { font-weight: 500; font-size: 0.9rem; }
+        .item-price { color: var(--text-gray); font-size: 0.8rem; }
+        .item-quantity { background: rgba(0, 230, 118, 0.1); color: var(--primary-green); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; }
 
-        .item-image {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-right: 10px;
-        }
+        .location-details { margin: 15px 0; padding-left: 15px; border-left: 2px solid #444; }
+        .loc-line { margin-bottom: 8px; font-size: 0.9rem; line-height: 1.4; }
+        .loc-label { color: var(--text-gray); font-size: 0.75rem; text-transform: uppercase; display: block; }
 
-        .item-details {
-            flex: 1;
-        }
+        .action-row { display: flex; gap: 10px; margin-top: 15px; }
 
-        .item-name {
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .item-price {
-            color: var(--text-gray);
-            font-size: 0.8rem;
-        }
-
-        .item-quantity {
-            background: rgba(0, 230, 118, 0.1);
-            color: var(--primary-green);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-        }
-
-        /* LOCATION DETAILS */
-        .location-details { 
-            margin: 15px 0; 
-            padding-left: 15px; 
-            border-left: 2px solid #444; 
-        }
-        
-        .loc-line { 
-            margin-bottom: 8px; 
-            font-size: 0.9rem; 
-            line-height: 1.4; 
-        }
-        
-        .loc-label { 
-            color: var(--text-gray); 
-            font-size: 0.75rem; 
-            text-transform: uppercase; 
-            display: block; 
-        }
-
-        /* MAP PREVIEW */
-        .map-preview {
-            margin: 15px 0;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #333;
-            position: relative;
-        }
-
-        .map-placeholder {
-            height: 150px;
-            background: linear-gradient(135deg, #222 0%, #333 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-gray);
-        }
-
-        /* ACTION BUTTONS */
-        .action-row { 
-            display: flex; 
-            gap: 10px; 
-            margin-top: 15px; 
-        }
-        
         .btn { 
-            flex: 1; 
-            padding: 12px; 
-            border: none; 
-            border-radius: 8px; 
-            font-weight: 600; 
-            font-size: 1rem; 
-            cursor: pointer; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            gap: 8px; 
-            transition: transform 0.1s; 
+            flex: 1; padding: 12px; border: none; border-radius: 8px; 
+            font-weight: 600; font-size: 1rem; cursor: pointer; 
+            display: flex; justify-content: center; align-items: center; 
+            gap: 8px; transition: transform 0.1s; 
         }
-        
-        .btn:active { 
-            transform: scale(0.98); 
-        }
-        
-        .btn-accept { 
-            background-color: var(--primary-green); 
-            color: #000; 
-            box-shadow: 0 0 15px rgba(0, 230, 118, 0.2); 
-        }
-        
-        .btn-reject { 
-            background-color: #333; 
-            color: var(--reject-red); 
-            border: 1px solid var(--reject-red); 
-        }
-        
-        .btn-nav { 
-            background-color: var(--nav-blue); 
-            color: white; 
-            width: 100%; 
-            margin-top: 10px; 
-        }
-        
-        .btn-delivered { 
-            background-color: var(--primary-green); 
-            color: black; 
-            width: 100%; 
-            margin-top: 10px; 
-        }
+        .btn:active { transform: scale(0.98); }
+        .btn-accept { background-color: var(--primary-green); color: #000; box-shadow: 0 0 15px rgba(0, 230, 118, 0.2); }
+        .btn-reject { background-color: #333; color: var(--reject-red); border: 1px solid var(--reject-red); }
+        .btn-nav { background-color: var(--nav-blue); color: white; width: 100%; margin-top: 10px; }
+        .btn-delivered { background-color: var(--primary-green); color: black; width: 100%; margin-top: 10px; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        .empty-msg { 
-            text-align: center; 
-            color: #555; 
-            margin-top: 50px; 
-        }
-        
-        .empty-msg i { 
-            font-size: 3rem; 
-            margin-bottom: 10px; 
-        }
+        .empty-msg { text-align: center; color: #555; margin-top: 50px; }
+        .empty-msg i { font-size: 3rem; margin-bottom: 10px; }
 
-        @keyframes slideUp { 
-            from { transform: translateY(20px); opacity: 0; } 
-            to { transform: translateY(0); opacity: 1; } 
-        }
-        
-        /* LOGOUT CONFIRMATION MODAL */
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
         .modal {
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.8);
-            display: flex; 
-            justify-content: center; 
-            align-items: center;
-            opacity: 0; 
-            visibility: hidden; 
-            transition: opacity 0.3s, visibility 0.3s; 
-            z-index: 1000;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; z-index: 1000;
         }
-        
-        .modal.open { 
-            opacity: 1; 
-            visibility: visible; 
-        }
-        
+        .modal.open { opacity: 1; visibility: visible; }
+
         .modal-content { 
-            background-color: var(--card-bg); 
-            padding: 2rem; 
-            border-radius: 12px; 
-            width: 90%; 
-            max-width: 400px; 
-            text-align: center;
-            border: 1px solid #444;
+            background-color: var(--card-bg); padding: 2rem; border-radius: 12px; 
+            width: 90%; max-width: 400px; text-align: center; border: 1px solid #444;
         }
-        
-        /* TOAST NOTIFICATION */
+
         .toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary-green);
-            color: black;
-            padding: 10px 20px;
-            border-radius: 8px;
-            z-index: 1000;
-            animation: fadeInOut 3s ease-in-out;
-            display: none;
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: var(--primary-green); color: black; padding: 10px 20px;
+            border-radius: 8px; z-index: 2000; animation: fadeInOut 3s ease-in-out;
+            display: none; font-weight: 500; font-size: 0.9rem; max-width: 90%; text-align: center;
         }
-        
+
         @keyframes fadeInOut {
             0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
             10% { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -453,32 +269,29 @@
     </style>
 </head>
 <body>
-    <!-- LOGIN SCREEN -->
+
+    <div id="loading-overlay" class="loading-overlay d-none">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Restoring session...</div>
+    </div>
+
     <div id="login-screen" class="login-container">
         <div class="login-box">
-            <div class="login-icon">
-                <i class="fas fa-motorcycle"></i>
-            </div>
+            <div class="login-icon"><i class="fas fa-motorcycle"></i></div>
             <h2>DuckShop Delivery Partner</h2>
             <form id="login-form">
                 <div class="code-input-container">
-                    <input type="tel" 
-                           id="delivery-code" 
-                           class="code-input" 
-                           placeholder="Enter 4-Digit Code" 
-                           maxlength="4" 
-                           pattern="\d{4}"
-                           inputmode="numeric"
-                           required>
+                    <input type="tel" id="delivery-code" class="code-input" 
+                        placeholder="Enter 4-Digit Code" maxlength="4" 
+                        pattern="\d{4}" inputmode="numeric" required>
                 </div>
-                <button type="submit" class="btn btn-accept" style="width: 100%;">
-                    Login & Start
+                <button type="submit" class="btn btn-accept" style="width: 100%;" id="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login & Start
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- MAIN APP -->
     <div id="main-app" class="d-none">
         <header class="header">
             <div class="logo">Duck<span>Shop</span> Delivery</div>
@@ -492,6 +305,12 @@
                 </button>
             </div>
         </header>
+
+        <div id="location-banner" class="location-banner d-none">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Location permission required</span>
+            <button onclick="requestLocationPermission()">Enable</button>
+        </div>
 
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('requests')">New Requests</button>
@@ -507,43 +326,40 @@
         </div>
     </div>
 
-    <!-- ORDER DETAILS MODAL -->
     <div id="order-details-modal" class="modal">
         <div class="modal-content" style="max-width: 500px; max-height: 90vh; overflow-y: auto;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                 <h2 id="modal-order-id">Order Details</h2>
                 <button class="close-modal-btn" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">&times;</button>
             </div>
-            
             <div id="modal-content"></div>
         </div>
     </div>
 
-    <!-- LOGOUT CONFIRMATION MODAL -->
     <div id="logout-confirm-modal" class="modal">
         <div class="modal-content">
-            <h2 style="margin-bottom: 1rem;">Confirm Logout</h2>
+            <h2 style="margin-bottom: 1rem;"><i class="fas fa-power-off" style="color: var(--reject-red);"></i> Confirm Logout</h2>
             <p style="margin-bottom: 1.5rem; color: var(--text-gray);">
                 Are you sure you want to logout?<br>
-                Your status will be set to <strong>Inactive</strong>.
+                Your status will be set to <strong style="color: var(--reject-red);">Inactive</strong>.
             </p>
             <div style="display: flex; gap: 10px; justify-content: center;">
-                <button id="confirm-logout-btn" class="btn btn-accept" style="flex: none; padding: 10px 20px;">
-                    Logout
-                </button>
                 <button id="cancel-logout-btn" class="btn btn-reject" style="flex: none; padding: 10px 20px;">
-                    Cancel
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button id="confirm-logout-btn" class="btn btn-accept" style="flex: none; padding: 10px 20px; background: var(--reject-red); color: white;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- TOAST NOTIFICATION -->
     <div id="toast-notification" class="toast"></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getDatabase, ref, onValue, update, get, onDisconnect, set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+        import { getDatabase, ref, onValue, update, get, onDisconnect, set, push, serverTimestamp } 
+            from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyB7P6KPjrJXI2GBHvgRIj7-djZEb2itImQ",
@@ -560,459 +376,439 @@
 
         let currentRider = null;
         let partnerLocation = null;
-        let rejectedOrders = JSON.parse(localStorage.getItem('rejectedOrders')) || [];
+        let rejectedOrders = [];
         let partnerStatus = 'inactive';
         let partnerId = null;
         let watchId = null;
+        let locationRetryCount = 0;
+        const MAX_LOCATION_RETRIES = 3;
+        let toastTimer = null;
+        let statusToggleListenerAdded = false;
+        let closeModalListenerAdded = false;
 
-        // SHOW TOAST FUNCTION
+        const SESSION_KEY = 'duckRider_session';
+
+        // ====== SESSION MANAGEMENT ======
+        function saveSession() {
+            if (!currentRider) return;
+            const sessionData = {
+                rider: currentRider,
+                partnerId: partnerId,
+                partnerStatus: partnerStatus,
+                loginTimestamp: Date.now(),
+                isLoggedIn: true
+            };
+            localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData));
+        }
+
+        function loadSession() {
+            try {
+                const data = localStorage.getItem(SESSION_KEY);
+                if (!data) return null;
+                const session = JSON.parse(data);
+                if (!session.isLoggedIn || !session.rider || !session.partnerId) return null;
+                return session;
+            } catch (e) { return null; }
+        }
+
+        function clearSession() {
+            localStorage.removeItem(SESSION_KEY);
+            localStorage.removeItem('duckRider');
+            localStorage.removeItem('partnerStatus');
+            localStorage.removeItem('partnerId');
+        }
+
+        function loadRejectedOrders() {
+            try {
+                const data = localStorage.getItem('rejectedOrders');
+                rejectedOrders = data ? JSON.parse(data) : [];
+            } catch (e) { rejectedOrders = []; }
+        }
+
+        // ====== TOAST ======
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toast-notification');
+            if (toastTimer) clearTimeout(toastTimer);
             toast.textContent = message;
             toast.style.backgroundColor = type === 'success' ? 'var(--primary-green)' : 'var(--reject-red)';
             toast.style.color = type === 'success' ? 'black' : 'white';
             toast.style.display = 'block';
-            
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 3000);
+            toast.style.animation = 'none';
+            toast.offsetHeight;
+            toast.style.animation = 'fadeInOut 3s ease-in-out';
+            toastTimer = setTimeout(() => { toast.style.display = 'none'; }, 3000);
         }
 
-        // CALCULATE DISTANCE FUNCTION (Haversine formula)
+        // ====== DISTANCE ======
         function calculateDistance(lat1, lon1, lat2, lon2) {
-            const R = 6371; // Earth's radius in km
+            const R = 6371;
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
-            const a = 
-                Math.sin(dLat/2) * Math.sin(dLat/2) +
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
                 Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
                 Math.sin(dLon/2) * Math.sin(dLon/2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-            const distance = R * c;
-            return distance;
+            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
         }
 
-        // GET CURRENT LOCATION
-        function getCurrentLocation() {
+        // ====== LOCATION ======
+        function getCurrentLocation(timeout = 15000) {
             return new Promise((resolve, reject) => {
-                if (!navigator.geolocation) {
-                    reject(new Error("Geolocation not supported"));
-                    return;
-                }
-                
+                if (!navigator.geolocation) { reject(new Error("Geolocation not supported")); return; }
+                const tid = setTimeout(() => reject(new Error("Timeout")), timeout + 2000);
                 navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const location = {
-                            latitude: position.coords.latitude,
-                            longitude: position.coords.longitude,
-                            accuracy: position.coords.accuracy,
-                            timestamp: position.timestamp
+                    (pos) => {
+                        clearTimeout(tid);
+                        partnerLocation = {
+                            latitude: pos.coords.latitude, longitude: pos.coords.longitude,
+                            accuracy: pos.coords.accuracy, timestamp: Date.now()
                         };
-                        partnerLocation = location;
-                        resolve(location);
+                        locationRetryCount = 0;
+                        hideLocationBanner();
+                        resolve(partnerLocation);
                     },
-                    (error) => {
-                        reject(error);
-                    },
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 10000,
-                        maximumAge: 0
-                    }
+                    (err) => { clearTimeout(tid); reject(err); },
+                    { enableHighAccuracy: true, timeout: timeout, maximumAge: 30000 }
                 );
             });
         }
 
-        // START WATCHING LOCATION
+        async function getLocationWithFallback() {
+            try { return await getCurrentLocation(10000); } catch (e) {
+                return new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(
+                        (pos) => {
+                            partnerLocation = {
+                                latitude: pos.coords.latitude, longitude: pos.coords.longitude,
+                                accuracy: pos.coords.accuracy, timestamp: Date.now()
+                            };
+                            hideLocationBanner(); resolve(partnerLocation);
+                        },
+                        (err) => reject(err),
+                        { enableHighAccuracy: false, timeout: 15000, maximumAge: 60000 }
+                    );
+                });
+            }
+        }
+
         function startLocationTracking() {
-            if (watchId) {
-                navigator.geolocation.clearWatch(watchId);
-            }
-            
-            if (!navigator.geolocation) {
-                console.warn("Geolocation not supported");
-                return;
-            }
-            
+            if (watchId !== null) { navigator.geolocation.clearWatch(watchId); watchId = null; }
+            if (!navigator.geolocation) { showLocationBanner(); return; }
             watchId = navigator.geolocation.watchPosition(
-                (position) => {
+                (pos) => {
                     partnerLocation = {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                        accuracy: position.coords.accuracy,
-                        timestamp: position.timestamp
+                        latitude: pos.coords.latitude, longitude: pos.coords.longitude,
+                        accuracy: pos.coords.accuracy, timestamp: Date.now()
                     };
-                    
-                    // Update partner location in Firebase
+                    hideLocationBanner();
                     if (partnerId) {
                         update(ref(db, `deliveryPartners/${partnerId}`), {
                             currentLocation: partnerLocation,
                             lastLocationUpdate: new Date().toISOString()
-                        }).catch(error => console.error("Error updating location:", error));
+                        }).catch(e => console.error("Location update error:", e));
                     }
                 },
-                (error) => {
-                    console.error("Error getting location:", error);
+                (err) => {
+                    locationRetryCount++;
+                    if (locationRetryCount <= MAX_LOCATION_RETRIES) {
+                        setTimeout(() => startLocationTracking(), 5000 * locationRetryCount);
+                    } else { showLocationBanner(); }
                 },
-                {
-                    enableHighAccuracy: true,
-                    maximumAge: 10000,
-                    timeout: 5000
-                }
+                { enableHighAccuracy: true, maximumAge: 15000, timeout: 10000 }
             );
         }
 
-        // STOP WATCHING LOCATION
         function stopLocationTracking() {
-            if (watchId) {
-                navigator.geolocation.clearWatch(watchId);
-                watchId = null;
-            }
+            if (watchId !== null) { navigator.geolocation.clearWatch(watchId); watchId = null; }
         }
 
-        // AUTO-FOCUS AND INPUT HANDLING
-        document.getElementById('delivery-code').addEventListener('input', function(e) {
+        function showLocationBanner() { document.getElementById('location-banner')?.classList.remove('d-none'); }
+        function hideLocationBanner() { document.getElementById('location-banner')?.classList.add('d-none'); }
+
+        window.requestLocationPermission = async () => {
+            try {
+                showToast("Requesting location...");
+                locationRetryCount = 0;
+                await getLocationWithFallback();
+                startLocationTracking();
+                showToast("Location enabled!");
+                startListeningOrders();
+            } catch (e) {
+                showToast("Enable location in browser settings.", "error");
+            }
+        };
+
+        // ====== INPUT ======
+        document.getElementById('delivery-code').addEventListener('input', function() {
             this.value = this.value.replace(/\D/g, '').slice(0, 4);
         });
 
-        document.getElementById('delivery-code').focus();
-
-        // LOGIN FORM SUBMISSION
+        // ====== LOGIN ======
         document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const code = document.getElementById('delivery-code').value.trim();
-            
-            if (!code || code.length !== 4) {
-                showToast('Please enter a valid 4-digit code.', 'error');
-                return;
-            }
+            const loginBtn = document.getElementById('login-btn');
+
+            if (!code || code.length !== 4) { showToast('Enter valid 4-digit code.', 'error'); return; }
+
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
 
             try {
-                const partnersRef = ref(db, 'deliveryPartners');
-                const snapshot = await get(partnersRef);
+                const snapshot = await get(ref(db, 'deliveryPartners'));
                 const partners = snapshot.val();
-                
-                let partner = null;
-                let foundPartnerId = null;
-                
-                for(let id in partners) {
-                    if(partners[id].loginCode === code) {
-                        partner = partners[id];
-                        foundPartnerId = id;
-                        break;
+                let partner = null, foundId = null;
+
+                if (partners) {
+                    for (let id in partners) {
+                        if (partners[id].loginCode === code) {
+                            partner = partners[id]; foundId = id; break;
+                        }
                     }
                 }
 
-                if(partner) {
-                    // Get current location
-                    try {
-                        await getCurrentLocation();
-                    } catch (error) {
-                        showToast("Location access is required for distance calculation. Please enable location services.", "error");
-                        return;
-                    }
-                    
-                    // Set status to active
-                    await update(ref(db, `deliveryPartners/${foundPartnerId}`), {
-                        status: 'active',
-                        lastLogin: new Date().toISOString(),
-                        currentLocation: partnerLocation
-                    });
-                    
-                    currentRider = { 
-                        id: foundPartnerId,
-                        code: partner.loginCode, 
-                        name: partner.name 
-                    };
-                    
-                    partnerId = foundPartnerId;
+                if (partner) {
+                    try { await getLocationWithFallback(); } catch (e) { showLocationBanner(); }
+
+                    const updateData = { status: 'active', lastLogin: new Date().toISOString() };
+                    if (partnerLocation) updateData.currentLocation = partnerLocation;
+                    await update(ref(db, `deliveryPartners/${foundId}`), updateData);
+
+                    currentRider = { id: foundId, code: partner.loginCode, name: partner.name, phone: partner.phone || '' };
+                    partnerId = foundId;
                     partnerStatus = 'active';
-                    
-                    // Store in localStorage
-                    localStorage.setItem('duckRider', JSON.stringify(currentRider));
-                    localStorage.setItem('partnerStatus', 'active');
-                    localStorage.setItem('partnerId', foundPartnerId);
-                    
-                    // Setup disconnect handler
-                    const partnerRef = ref(db, `deliveryPartners/${foundPartnerId}`);
-                    onDisconnect(partnerRef).update({ 
-                        status: 'inactive',
-                        lastSeen: new Date().toISOString()
-                    });
-                    
-                    // Start location tracking
+                    saveSession();
+                    setupDisconnectHandler();
                     startLocationTracking();
-                    
                     initApp();
-                    showToast("Login successful! You are now online.");
+                    showToast(`Welcome ${partner.name}! You are online.`);
                 } else {
-                    showToast("Invalid access code. Please check and try again.", "error");
+                    showToast("Invalid code.", "error");
                 }
             } catch (error) {
-                showToast("Error logging in: " + error.message, "error");
+                showToast("Login error: " + error.message, "error");
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login & Start';
             }
         });
 
-        // LOGOUT HANDLING
+        function setupDisconnectHandler() {
+            if (!partnerId) return;
+            try {
+                onDisconnect(ref(db, `deliveryPartners/${partnerId}`)).update({ 
+                    status: 'inactive', lastSeen: new Date().toISOString()
+                });
+            } catch (e) {}
+        }
+
+        // ====== LOGOUT ======
         document.getElementById('logout-btn').addEventListener('click', () => {
             document.getElementById('logout-confirm-modal').classList.add('open');
         });
 
         document.getElementById('confirm-logout-btn').addEventListener('click', async () => {
-            if(partnerId) {
-                try {
-                    // Stop location tracking
+            const btn = document.getElementById('confirm-logout-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging out...';
+            try {
+                if (partnerId) {
                     stopLocationTracking();
-                    
-                    // Cancel disconnect handler
-                    const partnerRef = ref(db, `deliveryPartners/${partnerId}`);
-                    await onDisconnect(partnerRef).cancel();
-                    
-                    // Set status to inactive
-                    await update(partnerRef, { 
-                        status: 'inactive',
-                        lastSeen: new Date().toISOString()
-                    });
-                } catch (error) {
-                    console.error("Error during logout:", error);
+                    const pRef = ref(db, `deliveryPartners/${partnerId}`);
+                    try { await onDisconnect(pRef).cancel(); } catch(e) {}
+                    await update(pRef, { status: 'inactive', lastSeen: new Date().toISOString() });
                 }
-            }
-            
-            // Clear local storage
-            localStorage.removeItem('duckRider');
-            localStorage.removeItem('partnerStatus');
-            localStorage.removeItem('partnerId');
-            
-            currentRider = null;
-            partnerId = null;
-            partnerStatus = 'inactive';
-            partnerLocation = null;
-            
-            // Switch screens
+            } catch (e) {}
+            clearSession();
+            currentRider = null; partnerId = null; partnerStatus = 'inactive';
+            partnerLocation = null; watchId = null; locationRetryCount = 0;
             document.getElementById('main-app').classList.add('d-none');
             document.getElementById('login-screen').classList.remove('d-none');
             document.getElementById('logout-confirm-modal').classList.remove('open');
             document.getElementById('delivery-code').value = '';
             document.getElementById('delivery-code').focus();
-            
-            showToast("You have been logged out.");
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
+            showToast("Logged out.");
         });
 
         document.getElementById('cancel-logout-btn').addEventListener('click', () => {
             document.getElementById('logout-confirm-modal').classList.remove('open');
         });
 
-        // AUTO LOGIN CHECK
-        const storedRider = localStorage.getItem('duckRider');
-        if(storedRider) {
-            currentRider = JSON.parse(storedRider);
-            partnerStatus = localStorage.getItem('partnerStatus') || 'inactive';
-            partnerId = localStorage.getItem('partnerId');
-            
-            // Get current location and update status
-            if(partnerId && partnerStatus === 'active') {
-                getCurrentLocation().then(() => {
-                    const partnerRef = ref(db, `deliveryPartners/${partnerId}`);
-                    update(partnerRef, { 
-                        status: 'active',
-                        lastLogin: new Date().toISOString(),
-                        currentLocation: partnerLocation
-                    });
-                    
-                    // Re-setup disconnect handler
-                    onDisconnect(partnerRef).update({ 
-                        status: 'inactive',
-                        lastSeen: new Date().toISOString()
-                    });
-                    
-                    // Start location tracking
-                    startLocationTracking();
-                    
-                    initApp();
-                }).catch(error => {
-                    showToast("Please enable location services to continue.", "error");
-                    // Logout since location is required
-                    localStorage.removeItem('duckRider');
-                    localStorage.removeItem('partnerStatus');
-                    localStorage.removeItem('partnerId');
-                });
+        // ====== SESSION RESTORE ======
+        async function restoreSession() {
+            const session = loadSession();
+            let oldRider = null;
+            try { const d = localStorage.getItem('duckRider'); if (d) oldRider = JSON.parse(d); } catch(e) {}
+
+            const s = session || (oldRider ? {
+                rider: oldRider, partnerId: localStorage.getItem('partnerId'),
+                partnerStatus: localStorage.getItem('partnerStatus') || 'active', isLoggedIn: true
+            } : null);
+
+            if (!s || !s.isLoggedIn) {
+                document.getElementById('login-screen').classList.remove('d-none');
+                document.getElementById('delivery-code').focus();
+                return;
+            }
+
+            document.getElementById('login-screen').classList.add('d-none');
+            document.getElementById('loading-overlay').classList.remove('d-none');
+
+            try {
+                const snap = await get(ref(db, `deliveryPartners/${s.partnerId}`));
+                const data = snap.val();
+
+                if (!data || data.loginCode !== s.rider.code) {
+                    clearSession();
+                    document.getElementById('loading-overlay').classList.add('d-none');
+                    document.getElementById('login-screen').classList.remove('d-none');
+                    showToast("Session expired. Login again.", "error");
+                    return;
+                }
+
+                currentRider = { ...s.rider, phone: data.phone || s.rider.phone || '' };
+                partnerId = s.partnerId;
+                partnerStatus = s.partnerStatus || 'active';
+
+                try { await getLocationWithFallback(); } catch (e) {}
+
+                const upd = { status: partnerStatus, lastLogin: new Date().toISOString() };
+                if (partnerLocation) upd.currentLocation = partnerLocation;
+                await update(ref(db, `deliveryPartners/${partnerId}`), upd);
+
+                saveSession();
+                setupDisconnectHandler();
+                if (partnerStatus === 'active') startLocationTracking();
+
+                document.getElementById('loading-overlay').classList.add('d-none');
+                initApp();
+            } catch (error) {
+                currentRider = { ...s.rider };
+                partnerId = s.partnerId;
+                partnerStatus = s.partnerStatus || 'active';
+                document.getElementById('loading-overlay').classList.add('d-none');
+                initApp();
+                showToast("Offline mode. Reconnecting...", "error");
+                getLocationWithFallback().then(() => startLocationTracking()).catch(() => showLocationBanner());
             }
         }
 
+        // ====== INIT APP ======
         function initApp() {
             document.getElementById('login-screen').classList.add('d-none');
             document.getElementById('main-app').classList.remove('d-none');
-            
-            // Update status UI
             updateStatusUI();
-            
-            // Add status toggle functionality
-            document.getElementById('status-toggle').addEventListener('click', toggleStatus);
-            
-            // Close modal handlers
-            document.querySelector('.close-modal-btn').addEventListener('click', () => {
-                document.getElementById('order-details-modal').classList.remove('open');
-            });
-            
+
+            if (!statusToggleListenerAdded) {
+                document.getElementById('status-toggle').addEventListener('click', toggleStatus);
+                statusToggleListenerAdded = true;
+            }
+            if (!closeModalListenerAdded) {
+                document.querySelector('.close-modal-btn').addEventListener('click', () => {
+                    document.getElementById('order-details-modal').classList.remove('open');
+                });
+                closeModalListenerAdded = true;
+            }
+            if (!partnerLocation) showLocationBanner();
+            loadRejectedOrders();
             startListeningOrders();
         }
 
         function updateStatusUI() {
-            const statusText = document.getElementById('status-text');
-            const statusDot = document.querySelector('.status-dot');
-            
-            if(partnerStatus === 'active') {
-                statusText.textContent = 'Online';
-                statusText.style.color = 'var(--primary-green)';
-                statusDot.style.background = 'var(--primary-green)';
-                statusDot.style.boxShadow = '0 0 10px var(--primary-green)';
+            const st = document.getElementById('status-text');
+            const sd = document.querySelector('.status-dot');
+            if (partnerStatus === 'active') {
+                st.textContent = 'Online'; st.style.color = 'var(--primary-green)';
+                sd.style.background = 'var(--primary-green)'; sd.style.boxShadow = '0 0 10px var(--primary-green)';
             } else {
-                statusText.textContent = 'Offline';
-                statusText.style.color = 'var(--reject-red)';
-                statusDot.style.background = 'var(--reject-red)';
-                statusDot.style.boxShadow = 'none';
+                st.textContent = 'Offline'; st.style.color = 'var(--reject-red)';
+                sd.style.background = 'var(--reject-red)'; sd.style.boxShadow = 'none';
             }
         }
 
         async function toggleStatus() {
-            if(!partnerId) return;
-            
-            const newStatus = partnerStatus === 'active' ? 'inactive' : 'active';
-            
+            if (!partnerId) return;
+            const ns = partnerStatus === 'active' ? 'inactive' : 'active';
             try {
                 await update(ref(db, `deliveryPartners/${partnerId}`), {
-                    status: newStatus,
-                    lastStatusChange: new Date().toISOString()
+                    status: ns, lastStatusChange: new Date().toISOString()
                 });
-                
-                partnerStatus = newStatus;
-                localStorage.setItem('partnerStatus', newStatus);
-                
-                if (newStatus === 'active') {
-                    startLocationTracking();
-                } else {
-                    stopLocationTracking();
-                }
-                
+                partnerStatus = ns; saveSession();
+                if (ns === 'active') startLocationTracking(); else stopLocationTracking();
                 updateStatusUI();
-                showToast(`Status changed to ${newStatus === 'active' ? 'Online' : 'Offline'}`);
-                
-                // Refresh orders based on new status
+                showToast(`Status: ${ns === 'active' ? 'Online' : 'Offline'}`);
                 startListeningOrders();
-            } catch (error) {
-                showToast("Error updating status: " + error.message, "error");
-            }
+            } catch (e) { showToast("Error: " + e.message, "error"); }
         }
 
         function renderItems(items) {
-            if(!items || Object.keys(items).length === 0) {
-                return '<div class="items-section">No items</div>';
-            }
-
-            let itemsHTML = '<div class="items-section">';
+            if (!items || Object.keys(items).length === 0) return '<div class="items-section">No items</div>';
+            let html = '<div class="items-section">';
             Object.values(items).forEach(item => {
-                itemsHTML += `
+                html += `
                     <div class="item-card">
                         <img src="${item.image || item.imageUrl || 'https://via.placeholder.com/60'}" 
-                             alt="${item.name}" 
-                             class="item-image"
-                             onerror="this.src='https://via.placeholder.com/60'">
+                            alt="${item.name}" class="item-image" onerror="this.src='https://via.placeholder.com/60'">
                         <div class="item-details">
                             <div class="item-name">${item.name}</div>
                             <div class="item-price">₹${item.price || 0}</div>
-                            ${item.selectedVariantName ? 
-                                `<div style="color: #888; font-size: 0.7rem;">Variant: ${item.selectedVariantName}</div>` : ''}
+                            ${item.selectedVariantName ? `<div style="color:#888;font-size:0.7rem;">Variant: ${item.selectedVariantName}</div>` : ''}
                         </div>
                         <div class="item-quantity">Qty: ${item.quantity || 1}</div>
-                    </div>
-                `;
+                    </div>`;
             });
-            itemsHTML += '</div>';
-            return itemsHTML;
+            html += '</div>';
+            return html;
         }
 
         function startListeningOrders() {
-            const ordersRef = ref(db, 'orders');
-            onValue(ordersRef, (snapshot) => {
+            onValue(ref(db, 'orders'), (snapshot) => {
                 const data = snapshot.val();
-                if(!data) return;
-
-                const allOrders = Object.entries(data).map(([id, order]) => ({
-                    id,
-                    ...order
-                }));
-
+                const allOrders = data ? Object.entries(data).map(([id, o]) => ({ id, ...o })) : [];
                 renderRequests(allOrders);
                 renderActiveDeliveries(allOrders);
             });
+        }
+
+        function getDistanceHTML(custLat, custLng) {
+            if (partnerLocation && custLat && custLng) {
+                const d = calculateDistance(partnerLocation.latitude, partnerLocation.longitude, custLat, custLng);
+                return `<div class="distance-badge"><i class="fas fa-map-marker-alt"></i> ${d.toFixed(1)} km away</div>`;
+            }
+            return '';
+        }
+
+        function getCustomerCoords(order) {
+            return {
+                lat: order.detectedLocation?.latitude || order.shippingDetails?.latitude || order.latitude || 0,
+                lng: order.detectedLocation?.longitude || order.shippingDetails?.longitude || order.longitude || 0
+            };
         }
 
         function renderRequests(orders) {
             const container = document.getElementById('requests-list');
             container.innerHTML = '';
 
-            // Only show requests if partner is active
-            if(partnerStatus !== 'active') {
-                container.innerHTML = `
-                    <div class="empty-msg">
-                        <i class="fas fa-toggle-off"></i><br>
-                        Go online to receive delivery requests
-                    </div>
-                `;
+            if (partnerStatus !== 'active') {
+                container.innerHTML = `<div class="empty-msg"><i class="fas fa-toggle-off"></i><br>Go online to receive delivery requests</div>`;
                 return;
             }
 
-            const pendingOrders = orders.filter(o => 
+            const pending = orders.filter(o => 
                 (o.status === 'Pending' || o.status === 'Confirmed' || o.status === 'Assigned') && 
-                !o.deliveryBoyId && 
-                !rejectedOrders.includes(o.id)
+                !o.deliveryBoyId && !rejectedOrders.includes(o.id)
             );
 
-            if(pendingOrders.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-msg">
-                        <i class="fas fa-check-circle"></i><br>
-                        No new delivery requests
-                    </div>
-                `;
+            if (pending.length === 0) {
+                container.innerHTML = `<div class="empty-msg"><i class="fas fa-check-circle"></i><br>No new delivery requests</div>`;
                 return;
             }
 
-            pendingOrders.forEach(order => {
-                const itemsHTML = renderItems(order.items);
-                const orderTime = order.date ? new Date(order.date).toLocaleString('en-IN', {
-                    day: 'numeric',
-                    month: 'short',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                }) : 'N/A';
-                
-                // Get customer location
-                const custLat = order.detectedLocation?.latitude || 
-                               order.shippingDetails?.latitude || 
-                               order.latitude || 0;
-                const custLng = order.detectedLocation?.longitude || 
-                               order.shippingDetails?.longitude || 
-                               order.longitude || 0;
-                
-                // Calculate distance if we have both locations
-                let distanceHTML = '';
-                if (partnerLocation && custLat && custLng) {
-                    const distance = calculateDistance(
-                        partnerLocation.latitude,
-                        partnerLocation.longitude,
-                        custLat,
-                        custLng
-                    );
-                    const distanceKm = distance.toFixed(1);
-                    distanceHTML = `
-                        <div class="distance-badge">
-                            <i class="fas fa-map-marker-alt"></i>
-                            ${distanceKm} km away
-                        </div>
-                    `;
-                }
-                
+            pending.forEach(order => {
+                const { lat, lng } = getCustomerCoords(order);
+                const orderTime = order.date ? new Date(order.date).toLocaleString('en-IN', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' }) : 'N/A';
+
                 const card = document.createElement('div');
                 card.className = 'order-card';
                 card.innerHTML = `
@@ -1020,13 +816,11 @@
                         <div class="user-info">
                             <h3>${order.shippingDetails?.name || 'Customer'}</h3>
                             <p>Order #${order.id.substr(-5)} • ${orderTime}</p>
-                            ${distanceHTML}
+                            ${getDistanceHTML(lat, lng)}
                         </div>
                         <div class="price-badge">₹${order.total || 0}</div>
                     </div>
-                    
-                    ${itemsHTML}
-                    
+                    ${renderItems(order.items)}
                     <div class="location-details">
                         <div class="loc-line">
                             <span class="loc-label">Delivery Location</span>
@@ -1034,32 +828,24 @@
                         </div>
                         <div class="loc-line">
                             <span class="loc-label">Phone</span>
-                            <a href="tel:${order.shippingDetails?.phone || ''}" 
-                               style="color:var(--primary-green); text-decoration:none;">
+                            <a href="tel:${order.shippingDetails?.phone || ''}" style="color:var(--primary-green);text-decoration:none;">
                                 ${order.shippingDetails?.phone || 'N/A'}
                             </a>
                         </div>
-                        ${custLat && custLng ? `
-                            <div class="loc-line">
-                                <span class="loc-label">Current Location</span>
-                                <a href="https://www.google.com/maps?q=${custLat},${custLng}" 
-                                   target="_blank" 
-                                   style="color:var(--nav-blue); text-decoration:none;">
-                                    View on Map
-                                </a>
-                            </div>
-                        ` : ''}
+                        ${lat && lng ? `
+                        <div class="loc-line">
+                            <span class="loc-label">Map</span>
+                            <a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank" style="color:var(--nav-blue);text-decoration:none;">View on Map</a>
+                        </div>` : ''}
                     </div>
-
                     <div class="action-row">
                         <button class="btn btn-reject" onclick="rejectOrder('${order.id}')">
                             <i class="fas fa-times"></i> Reject
                         </button>
-                        <button class="btn btn-accept" onclick="acceptOrder('${order.id}', '${custLat}', '${custLng}')">
+                        <button class="btn btn-accept" id="accept-btn-${order.id}" onclick="acceptOrder('${order.id}', '${lat}', '${lng}')">
                             <i class="fas fa-check"></i> Accept
                         </button>
-                    </div>
-                `;
+                    </div>`;
                 container.appendChild(card);
             });
         }
@@ -1068,137 +854,236 @@
             const container = document.getElementById('active-list');
             container.innerHTML = '';
 
-            const myOrders = orders.filter(o => 
-                o.deliveryBoyId === currentRider?.code
-            ).sort((a,b) => new Date(b.date || 0) - new Date(a.date || 0));
+            const myOrders = orders.filter(o => o.deliveryBoyId === currentRider?.code)
+                .sort((a,b) => new Date(b.date || 0) - new Date(a.date || 0));
 
-            if(myOrders.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-msg">
-                        <i class="fas fa-box-open"></i><br>
-                        No active deliveries
-                    </div>
-                `;
+            if (myOrders.length === 0) {
+                container.innerHTML = `<div class="empty-msg"><i class="fas fa-box-open"></i><br>No active deliveries</div>`;
                 return;
             }
 
             myOrders.forEach(order => {
-                const custLat = order.detectedLocation?.latitude || 
-                              order.shippingDetails?.latitude || 
-                              order.latitude || 0;
-                const custLng = order.detectedLocation?.longitude || 
-                              order.shippingDetails?.longitude || 
-                              order.longitude || 0;
-                
+                const { lat, lng } = getCustomerCoords(order);
                 const isDelivered = order.status === 'Delivered';
                 const isCancelled = order.status === 'Cancelled';
-                const orderTime = order.date ? new Date(order.date).toLocaleString('en-IN', {
-                    day: 'numeric',
-                    month: 'short',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                }) : 'N/A';
-                
-                // Calculate distance if we have both locations
-                let distanceHTML = '';
-                if (partnerLocation && custLat && custLng) {
-                    const distance = calculateDistance(
-                        partnerLocation.latitude,
-                        partnerLocation.longitude,
-                        custLat,
-                        custLng
-                    );
-                    const distanceKm = distance.toFixed(1);
-                    distanceHTML = `
-                        <div class="distance-badge">
-                            <i class="fas fa-map-marker-alt"></i>
-                            ${distanceKm} km away
-                        </div>
-                    `;
-                }
-                
-                const mapLink = `https://www.google.com/maps/dir/?api=1&destination=${custLat},${custLng}`;
-                
-                const itemsHTML = renderItems(order.items);
+                const orderTime = order.date ? new Date(order.date).toLocaleString('en-IN', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' }) : 'N/A';
+                const mapLink = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
 
                 const card = document.createElement('div');
                 card.className = 'order-card';
-                card.style.borderLeft = isDelivered ? '4px solid green' : 
-                                       isCancelled ? '4px solid var(--reject-red)' : 
-                                       '4px solid var(--primary-green)';
-                
+                card.style.borderLeft = isDelivered ? '4px solid green' : isCancelled ? '4px solid var(--reject-red)' : '4px solid var(--primary-green)';
+
                 card.innerHTML = `
                     <div class="card-header">
                         <div class="user-info">
                             <h3>${order.shippingDetails?.name || 'Customer'}</h3>
                             <p>Order #${order.id.substr(-5)} • ${orderTime}</p>
-                            ${distanceHTML}
-                            <span style="background:#333; padding:2px 8px; border-radius:4px; 
-                                   font-size:0.8rem; color:${isDelivered?'#4caf50':isCancelled?'#ff3d00':'orange'}">
+                            ${getDistanceHTML(lat, lng)}
+                            <span style="background:#333;padding:2px 8px;border-radius:4px;font-size:0.8rem;color:${isDelivered?'#4caf50':isCancelled?'#ff3d00':'orange'}">
                                 ${order.status || 'Pending'}
                             </span>
                         </div>
-                        <div class="price-badge" style="background:transparent; color:white; border:1px solid #444;">
-                            ₹${order.total || 0}
-                        </div>
+                        <div class="price-badge" style="background:transparent;color:white;border:1px solid #444;">₹${order.total || 0}</div>
                     </div>
-
-                    ${itemsHTML}
-
+                    ${renderItems(order.items)}
                     <div class="location-details">
-                        <div class="loc-line">
-                            <span class="loc-label">Customer Location</span>
-                            ${order.shippingDetails?.fullAddress || order.shippingDetails?.address || 'N/A'}
+                        <div class="loc-line"><span class="loc-label">Customer Location</span>${order.shippingDetails?.fullAddress || order.shippingDetails?.address || 'N/A'}</div>
+                        <div class="loc-line"><span class="loc-label">Phone</span>
+                            <a href="tel:${order.shippingDetails?.phone || ''}" style="color:var(--primary-green);text-decoration:none;">${order.shippingDetails?.phone || 'N/A'}</a>
                         </div>
-                        <div class="loc-line">
-                            <span class="loc-label">Phone</span>
-                            <a href="tel:${order.shippingDetails?.phone || ''}" 
-                               style="color:var(--primary-green); text-decoration:none;">
-                                ${order.shippingDetails?.phone || 'N/A'}
-                            </a>
-                        </div>
-                        ${custLat && custLng ? `
-                            <div class="loc-line">
-                                <span class="loc-label">Map Location</span>
-                                <a href="https://www.google.com/maps?q=${custLat},${custLng}" 
-                                   target="_blank" 
-                                   style="color:var(--nav-blue); text-decoration:none;">
-                                    View Customer Location
-                                </a>
-                            </div>
-                        ` : ''}
-                        <div class="loc-line">
-                            <span class="loc-label">Payment</span>
-                            Cash on Delivery
-                        </div>
+                        ${lat && lng ? `<div class="loc-line"><span class="loc-label">Map</span>
+                            <a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank" style="color:var(--nav-blue);text-decoration:none;">View Customer Location</a></div>` : ''}
+                        <div class="loc-line"><span class="loc-label">Payment</span>Cash on Delivery</div>
                     </div>
-
                     ${!isDelivered && !isCancelled ? `
-                        <button class="btn btn-nav" onclick="openNavigation('${mapLink}')">
-                            <i class="fas fa-directions"></i> Navigate to Customer
-                        </button>
-                        <button class="btn btn-delivered" onclick="markDelivered('${order.id}')">
-                            <i class="fas fa-check-double"></i> Mark as Delivered
-                        </button>
-                    ` : `
-                        <div style="text-align:center; color:gray; font-size:0.8rem; margin-top:10px;">
-                            ${isDelivered ? 'Delivery Completed' : 'Order Cancelled'}
-                        </div>
-                    `}
-                `;
+                        <button class="btn btn-nav" onclick="openNavigation('${mapLink}')"><i class="fas fa-directions"></i> Navigate to Customer</button>
+                        <button class="btn btn-delivered" id="deliver-btn-${order.id}" onclick="markDelivered('${order.id}')"><i class="fas fa-check-double"></i> Mark as Delivered</button>
+                    ` : `<div style="text-align:center;color:gray;font-size:0.8rem;margin-top:10px;">${isDelivered ? '✅ Delivery Completed' : '❌ Order Cancelled'}</div>`}`;
                 container.appendChild(card);
             });
         }
 
-        // OPEN ORDER DETAILS MODAL
-        function openOrderDetails(orderId, customerLat, customerLng) {
-            // You can implement this to show more detailed order information
-            console.log("Opening order details for:", orderId);
-        }
+        // ================================================================
+        // ====== ACCEPT ORDER - Updates order with delivery boy info ======
+        // ====== so user's order page shows delivery boy details     ======
+        // ================================================================
+        window.acceptOrder = async (orderId, customerLat, customerLng) => {
+            if (!confirm("Accept this delivery request?")) return;
 
-        // GLOBAL FUNCTIONS
+            const btn = document.getElementById(`accept-btn-${orderId}`);
+            if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Accepting...'; }
+
+            try {
+                const now = new Date().toISOString();
+
+                // ===== UPDATE ORDER WITH FULL DELIVERY BOY DETAILS =====
+                // This data will be shown on user's order tracking page
+                const orderUpdates = {
+                    status: "Out for Delivery",
+                    deliveryBoyId: currentRider.code,
+                    deliveryBoyName: currentRider.name,
+                    deliveryBoyPhone: currentRider.phone || '',
+                    assignedAt: now,
+                    deliveryStatus: "accepted",
+                    
+                    // Delivery tracking info for user's order page
+                    deliveryTracking: {
+                        status: "accepted",
+                        acceptedAt: now,
+                        deliveryBoyName: currentRider.name,
+                        deliveryBoyPhone: currentRider.phone || '',
+                        deliveryBoyId: currentRider.code,
+                        message: `${currentRider.name} ne aapka order accept kar liya hai! Jaldi deliver hoga.`,
+                        messageEn: `${currentRider.name} has accepted your order and is on the way!`,
+                        estimatedTime: "30-45 minutes",
+                        lastUpdated: now
+                    }
+                };
+
+                // Add delivery boy current location if available
+                if (partnerLocation) {
+                    orderUpdates.deliveryTracking.deliveryBoyLocation = {
+                        latitude: partnerLocation.latitude,
+                        longitude: partnerLocation.longitude,
+                        updatedAt: now
+                    };
+                }
+
+                await update(ref(db, `orders/${orderId}`), orderUpdates);
+
+                // ===== CREATE ORDER TIMELINE EVENT =====
+                // This will show step-by-step updates on user's order page
+                const timelineRef = ref(db, `orders/${orderId}/timeline`);
+                const timelineEntry = push(timelineRef);
+                await set(timelineEntry, {
+                    event: "delivery_accepted",
+                    title: "Delivery Boy Assigned",
+                    description: `${currentRider.name} ne aapka order accept kiya`,
+                    descriptionEn: `${currentRider.name} accepted your order`,
+                    icon: "motorcycle",
+                    color: "#00e676",
+                    timestamp: now,
+                    deliveryBoyName: currentRider.name,
+                    deliveryBoyPhone: currentRider.phone || ''
+                });
+
+                // ===== CREATE NOTIFICATION FOR USER =====
+                const notifRef = push(ref(db, 'notifications'));
+                await set(notifRef, {
+                    orderId: orderId,
+                    type: 'delivery_accepted',
+                    title: '🏍️ Delivery Boy Assigned!',
+                    message: `${currentRider.name} ne aapka order accept kar liya hai! Aapka order jaldi deliver hoga.`,
+                    messageEn: `${currentRider.name} has accepted your order and is on the way to deliver it!`,
+                    deliveryBoyName: currentRider.name,
+                    deliveryBoyPhone: currentRider.phone || '',
+                    deliveryBoyCode: currentRider.code,
+                    timestamp: now,
+                    read: false,
+                    status: 'unread'
+                });
+
+                // ===== ALSO SAVE UNDER ORDER-SPECIFIC NOTIFICATIONS =====
+                const orderNotifRef = push(ref(db, `orderNotifications/${orderId}`));
+                await set(orderNotifRef, {
+                    type: 'delivery_accepted',
+                    title: '🏍️ Delivery Boy Accepted Your Order!',
+                    message: `${currentRider.name} is on the way to deliver your order`,
+                    deliveryBoyName: currentRider.name,
+                    deliveryBoyPhone: currentRider.phone || '',
+                    timestamp: now,
+                    read: false
+                });
+
+                showToast("✅ Order accepted! User ko notification bhej diya gaya.");
+                window.switchTab('active');
+
+            } catch (error) {
+                showToast("Error: " + error.message, "error");
+                if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check"></i> Accept'; }
+            }
+        };
+
+        // ================================================================
+        // ====== MARK DELIVERED - Updates order with delivery info   ======
+        // ================================================================
+        window.markDelivered = async (orderId) => {
+            if (!confirm("Confirm: Delivery Complete & Cash Collected?")) return;
+
+            const btn = document.getElementById(`deliver-btn-${orderId}`);
+            if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Updating...'; }
+
+            try {
+                const now = new Date().toISOString();
+
+                // ===== UPDATE ORDER STATUS =====
+                await update(ref(db, `orders/${orderId}`), { 
+                    status: 'Delivered',
+                    deliveredAt: now,
+                    deliveryStatus: "delivered",
+                    
+                    // Update delivery tracking for user
+                    deliveryTracking: {
+                        status: "delivered",
+                        acceptedAt: null, // will be preserved from before
+                        deliveredAt: now,
+                        deliveryBoyName: currentRider.name,
+                        deliveryBoyPhone: currentRider.phone || '',
+                        deliveryBoyId: currentRider.code,
+                        message: `${currentRider.name} ne aapka order successfully deliver kar diya hai!`,
+                        messageEn: `${currentRider.name} has successfully delivered your order!`,
+                        lastUpdated: now
+                    }
+                });
+
+                // ===== ADD TIMELINE EVENT =====
+                const timelineEntry = push(ref(db, `orders/${orderId}/timeline`));
+                await set(timelineEntry, {
+                    event: "delivered",
+                    title: "Order Delivered! ✅",
+                    description: `${currentRider.name} ne aapka order deliver kar diya`,
+                    descriptionEn: `${currentRider.name} delivered your order successfully`,
+                    icon: "check-double",
+                    color: "#4caf50",
+                    timestamp: now,
+                    deliveryBoyName: currentRider.name
+                });
+
+                // ===== CREATE NOTIFICATION FOR USER =====
+                const notifRef = push(ref(db, 'notifications'));
+                await set(notifRef, {
+                    orderId: orderId,
+                    type: 'order_delivered',
+                    title: '✅ Order Delivered!',
+                    message: `${currentRider.name} ne aapka order successfully deliver kar diya hai! Thank you for ordering.`,
+                    messageEn: `${currentRider.name} has delivered your order successfully! Thank you for ordering.`,
+                    deliveryBoyName: currentRider.name,
+                    timestamp: now,
+                    read: false,
+                    status: 'unread'
+                });
+
+                // ===== ORDER-SPECIFIC NOTIFICATION =====
+                const orderNotifRef = push(ref(db, `orderNotifications/${orderId}`));
+                await set(orderNotifRef, {
+                    type: 'order_delivered',
+                    title: '✅ Your Order Has Been Delivered!',
+                    message: `Delivered by ${currentRider.name}. Thank you for ordering!`,
+                    timestamp: now,
+                    read: false
+                });
+
+                showToast("✅ Order delivered! User ko notification bhej diya.");
+
+            } catch (error) {
+                showToast("Error: " + error.message, "error");
+                if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check-double"></i> Mark as Delivered'; }
+            }
+        };
+
+        // ====== REJECT ORDER ======
         window.rejectOrder = (orderId) => {
-            if(confirm("Reject this delivery request?")) {
+            if (confirm("Reject this delivery request?")) {
                 rejectedOrders.push(orderId);
                 localStorage.setItem('rejectedOrders', JSON.stringify(rejectedOrders));
                 startListeningOrders();
@@ -1206,75 +1091,12 @@
             }
         };
 
-        window.acceptOrder = async (orderId, customerLat, customerLng) => {
-            if(!confirm("Accept this delivery request?")) return;
-
-            try {
-                // First, update order status
-                const updates = {};
-                updates[`/orders/${orderId}/status`] = "Out for Delivery";
-                updates[`/orders/${orderId}/deliveryBoyId`] = currentRider.code;
-                updates[`/orders/${orderId}/deliveryBoyName`] = currentRider.name;
-                updates[`/orders/${orderId}/assignedAt`] = new Date().toISOString();
-                updates[`/orders/${orderId}/deliveryStatus`] = "accepted";
-                
-                // Create notification for user
-                const notificationId = `notification_${Date.now()}`;
-                const notificationRef = ref(db, `notifications/${notificationId}`);
-                await set(notificationRef, {
-                    orderId: orderId,
-                    type: 'order_accepted',
-                    message: `Your order has been accepted by ${currentRider.name}`,
-                    deliveryBoyName: currentRider.name,
-                    deliveryBoyCode: currentRider.code,
-                    timestamp: new Date().toISOString(),
-                    read: false
-                });
-                
-                await update(ref(db), updates);
-                showToast("Order accepted successfully! User has been notified.");
-                window.switchTab('active');
-            } catch (error) {
-                showToast("Error accepting order: " + error.message, "error");
-            }
-        };
-
-        window.markDelivered = async (orderId) => {
-            if(!confirm("Confirm: Delivery Complete & Cash Collected?")) return;
-
-            try {
-                await update(ref(db, `orders/${orderId}`), { 
-                    status: 'Delivered',
-                    deliveredAt: new Date().toISOString(),
-                    deliveryStatus: "delivered"
-                });
-                
-                // Create notification for user
-                const notificationId = `notification_${Date.now()}`;
-                const notificationRef = ref(db, `notifications/${notificationId}`);
-                await set(notificationRef, {
-                    orderId: orderId,
-                    type: 'order_delivered',
-                    message: `Your order has been delivered by ${currentRider.name}`,
-                    timestamp: new Date().toISOString(),
-                    read: false
-                });
-                
-                showToast("Order marked as delivered! User has been notified.");
-            } catch (error) {
-                showToast("Error updating order: " + error.message, "error");
-            }
-        };
-
-        window.openNavigation = (mapLink) => {
-            window.open(mapLink, '_blank');
-        };
+        window.openNavigation = (mapLink) => { window.open(mapLink, '_blank'); };
 
         window.switchTab = (tabName) => {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.container').forEach(c => c.classList.add('d-none'));
-            
-            if(tabName === 'requests') {
+            if (tabName === 'requests') {
                 document.getElementById('requests-list').parentElement.classList.remove('d-none');
                 document.querySelector('button[onclick="switchTab(\'requests\')"]').classList.add('active');
             } else {
@@ -1282,6 +1104,31 @@
                 document.querySelector('button[onclick="switchTab(\'active\')"]').classList.add('active');
             }
         };
+
+        // ====== VISIBILITY & UNLOAD HANDLERS ======
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible' && currentRider && partnerId) {
+                getLocationWithFallback().then(loc => {
+                    if (partnerId) update(ref(db, `deliveryPartners/${partnerId}`), {
+                        currentLocation: loc, lastLocationUpdate: new Date().toISOString(), status: partnerStatus
+                    }).catch(e => {});
+                }).catch(() => {});
+                setupDisconnectHandler();
+            }
+        });
+
+        window.addEventListener('beforeunload', () => { if (currentRider) saveSession(); });
+
+        window.addEventListener('pageshow', (e) => {
+            if (e.persisted && currentRider && partnerId) {
+                setupDisconnectHandler();
+                if (partnerStatus === 'active') startLocationTracking();
+            }
+        });
+
+        // ====== START ======
+        restoreSession();
+
     </script>
 </body>
 </html>
